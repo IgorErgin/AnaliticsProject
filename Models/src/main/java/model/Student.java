@@ -1,40 +1,29 @@
 package model;
 
-import java.util.*;
-
+import java.util.Map;
 
 public class Student {
     private String lastName;
-    private String group;
-    private Map<String, Double> scores; // словарь {название темы: сложность}
+    private Map<String, Double> scores;
 
-    public Student(String lastName, String group) {
+    public Student(String lastName, Map<String, Double> scores) {
         this.lastName = lastName;
-        this.group = group;
-        this.scores = new HashMap<>();
-    }
-
-    public void addScore(String topicName, double difficulty) {
-        scores.put(topicName, difficulty);
-    }
-
-    public List<Map.Entry<String, Double>> getDifficultTopics(int topN) {
-        // Сортируем темы по сложности и выбираем topN самых сложных
-        List<Map.Entry<String, Double>> sortedTopics = new ArrayList<>(scores.entrySet());
-        sortedTopics.sort((a, b) -> Double.compare(b.getValue(), a.getValue()));
-        return sortedTopics.subList(0, Math.min(topN, sortedTopics.size()));
+        this.scores = scores;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public String getGroup() {
-        return group;
+    public Map<String, Double> getScores() {
+        return scores;
     }
 
-    @Override
-    public String toString() {
-        return "Студент(" + lastName + ", Группа: " + group + ")";
+    public String displayScores() {
+        StringBuilder sb = new StringBuilder("Результаты для " + lastName + ":\n");
+        for (Map.Entry<String, Double> entry : scores.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+        return sb.toString();
     }
 }
