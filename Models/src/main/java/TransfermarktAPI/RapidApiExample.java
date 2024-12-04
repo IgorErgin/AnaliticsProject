@@ -17,7 +17,7 @@ public class RapidApiExample {
             String apiUrl = "https://transfermarket.p.rapidapi.com/search?query=" + clubName + "&domain=de";
             HttpRequest searchRequest = HttpRequest.newBuilder()
                     .uri(URI.create(apiUrl))
-                    .header("x-rapidapi-key", "fccec1ec4cmsha3352b856179ccdp10a71cjsnf0bea677dc56")
+                    .header("x-rapidapi-key", "")
                     .header("x-rapidapi-host", "transfermarket.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
@@ -52,7 +52,7 @@ public class RapidApiExample {
                     String detailsApiUrl = "https://transfermarket.p.rapidapi.com/clubs/get-profile?id=" + selectedClubId + "&domain=de";
                     HttpRequest detailsRequest = HttpRequest.newBuilder()
                             .uri(URI.create(detailsApiUrl))
-                            .header("x-rapidapi-key", "fccec1ec4cmsha3352b856179ccdp10a71cjsnf0bea677dc56")
+                            .header("x-rapidapi-key", "")
                             .header("x-rapidapi-host", "transfermarket.p.rapidapi.com")
                             .method("GET", HttpRequest.BodyPublishers.noBody())
                             .build();
