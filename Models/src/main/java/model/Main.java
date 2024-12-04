@@ -1,8 +1,4 @@
-package main;
-
-import model.CSVParser;
-import model.PerformanceAnalyzer;
-import model.Student;
+package model;
 
 import java.util.List;
 
