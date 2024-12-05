@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\Игорь Ергин\\Desktop\\AnaliticProject\\AnaliticsProject\\java-rtf.csv"; // Замените на путь к вашему CSV файлу
+        String filePath = "C:\\Users\\Игорь Ергин\\Desktop\\AnaliticProject\\AnaliticsProject\\java-rtf.csv"; // Путь к вашему CSV файлу
 
         CSVParser parser = new CSVParser(filePath);
         List<Student> students = parser.parseCSV();
@@ -14,6 +14,11 @@ public class Main {
         } else {
             PerformanceAnalyzer analyzer = new PerformanceAnalyzer(students);
             analyzer.displayAllStudentData(); // Вывод всех данных о студентах
+
+            // Сохранение данных в базу данных
+            DatabaseManager dbManager = new DatabaseManager();
+            dbManager.createTable(); // Создание таблиц, если они еще не существуют
+            dbManager.insertStudentData(students); // Запись данных студентов в базу
         }
     }
 }
