@@ -15,20 +15,20 @@ public class ChartVisualizer {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(1200, 800);
 
-            // Dropdown menu for selecting students
+            // Выпадающее меню для выбора студента
             JComboBox<String> studentSelector = new JComboBox<>(students.stream()
                     .map(Student::getLastName)
                     .toArray(String[]::new));
 
             JPanel mainPanel = new JPanel(new BorderLayout());
 
-            // Panel for the current chart
+            // Panel для текущего графика
             JPanel chartPanel = new JPanel();
             chartPanel.setLayout(new BorderLayout());
 
             JScrollPane chartScrollPane = new JScrollPane(chartPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-            // Add action listener to update chart on selection
+            // Обновляет график при выборе
             studentSelector.addActionListener(e -> {
                 int selectedIndex = studentSelector.getSelectedIndex();
                 Student selectedStudent = students.get(selectedIndex);
@@ -38,7 +38,7 @@ public class ChartVisualizer {
                 chartPanel.repaint();
             });
 
-            // Initialize with the first student's chart
+            // Инициализирует таблицу первого ученика
             chartPanel.add(createChartPanel(students.get(0), maxScores), BorderLayout.CENTER);
 
             mainPanel.add(studentSelector, BorderLayout.NORTH);
@@ -68,7 +68,7 @@ public class ChartVisualizer {
             JPanel barPanel = new JPanel();
             barPanel.setLayout(new BorderLayout());
 
-            // Bar representation
+            // Информация в столбцах
             JPanel bar = new JPanel() {
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -78,15 +78,15 @@ public class ChartVisualizer {
                     int maxHeight = getHeight();
                     int studentHeight = (int) ((studentScore / maxScore) * maxHeight);
 
-                    // Draw max bar (dark green)
+                    // Столбец Макс. (Темно-зеленый)
                     g2d.setColor(new Color(0, 100, 0)); // Darker green
                     g2d.fillRect(10, maxHeight - maxHeight, getWidth() / 3, maxHeight);
 
-                    // Draw student bar (dark blue)
+                    // Столбец студент (Синий)
                     g2d.setColor(new Color(0, 0, 139)); // Darker blue
                     g2d.fillRect(getWidth() / 3 + 20, maxHeight - studentHeight, getWidth() / 3, studentHeight);
 
-                    // Add numerical labels
+                    // Нумерация
                     g2d.setColor(Color.BLACK);
                     g2d.setFont(new Font("Arial", Font.BOLD, 12));
                     g2d.drawString(String.format("%.1f", maxScore), 10, maxHeight - maxHeight - 5);
@@ -97,7 +97,7 @@ public class ChartVisualizer {
             bar.setPreferredSize(new Dimension(100, 400)); // Increased size for better readability
             barPanel.add(bar, BorderLayout.CENTER);
 
-            // Add topic label and max score label
+            // Добавить метку темы и метку максимального балла
             JPanel labelPanel = new JPanel(new GridLayout(2, 1));
             JLabel topicLabel = new JLabel(topic, JLabel.CENTER);
             topicLabel.setFont(new Font("Arial", Font.PLAIN, 12));
