@@ -35,6 +35,10 @@ public class Main {
         PerformanceAnalyzer analyzer = new PerformanceAnalyzer(students, maxScores);
         analyzer.displayAllStudentDataWithComparison();
 
+        DatabaseManager dbManager = new DatabaseManager();
+        dbManager.createTable();
+        dbManager.insertStudentData(students);
+
         // Визуализация данных
         ChartVisualizer.displayCharts(students, maxScores);
     }
